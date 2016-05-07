@@ -1,9 +1,14 @@
 package View;
 
+import Model.ManagerXML;
+import Model.Word;
 import javafx.application.Application;
+import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
@@ -75,45 +80,68 @@ public class Main extends Application{
         Pane paneWord = new Pane();
         paneWord.setPrefSize(400,500);
 
+        VBox vBoxAddWord = new VBox();
+        vBoxAddWord.setSpacing(10);
+        vBoxAddWord.setTranslateX(15);
+        vBoxAddWord.setTranslateY(15);
         Text text1 = new Text("Введите слово");
-        text1.setTranslateX(15);
-        text1.setTranslateY(20);
-
         TextField wordInput = new TextField();
-        wordInput.setTranslateX(15);
-        wordInput.setTranslateY(40);
 
         Text text4 = new Text("Введите перевод");
-        text4.setTranslateX(15);
-        text4.setTranslateY(80);
-
         TextField transferInput = new TextField();
-        transferInput.setTranslateX(15);
-        transferInput.setTranslateY(100);
+
+        Text text5 = new Text("Введите транскрипцию");
+        TextField transcription = new TextField();
 
         Text text2 = new Text("Выберите категорию");
-        text2.setTranslateX(15);
-        text2.setTranslateY(140);
-
         ComboBox boxCategory = new ComboBox();
-        boxCategory.setTranslateX(15);
-        boxCategory.setTranslateY(160);
+
 
         Text text3 = new Text("Установить приоритет");
-        text3.setTranslateX(15);
-        text3.setTranslateY(200);
-
         TextField priority = new TextField();
-        priority.setTranslateX(15);
-        priority.setTranslateY(220);
 
-        Button but = new Button("Добавить");
-        but.setTranslateX(150);
-        but.setTranslateY(350);
 
-        paneWord.getChildren().addAll(text1,text2,text3,text4,
-                                   but,wordInput,priority,boxCategory,
-                                    transferInput);
+        Button butAddWord = new Button("Добавить");
+        butAddWord.setTranslateX(35);
+
+        vBoxAddWord.getChildren().addAll(text1,wordInput,text4,transferInput,
+               text5,transcription, text2,boxCategory, text3, priority, butAddWord);
+
+
+        VBox vBoxCategory = new VBox();
+        vBoxCategory.setTranslateX(200);
+        vBoxCategory.setTranslateY(15);
+        vBoxCategory.setSpacing(10);
+
+        Text text6 = new Text("Введите название категории");
+        TextField category = new TextField();
+
+        Button butCreateCategory = new Button("Добаить");
+        butCreateCategory.setTranslateX(35);
+        vBoxCategory.getChildren().addAll(text6,category,butCreateCategory);
+        paneWord.getChildren().addAll(vBoxAddWord, vBoxCategory);
+
+        butAddWord.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                Word word = new Word(
+                        wordInput.getText(),
+                        priority.getText(),
+                        transferInput.getText(),
+                        transcription.getText()
+                );
+
+            }
+        });
+
+        butCreateCategory.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                ManagerXML.createCategory(category.getText());
+                category.setText("");
+            }
+        });
+
         return paneWord;
     }
 }

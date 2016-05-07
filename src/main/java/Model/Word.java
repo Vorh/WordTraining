@@ -43,12 +43,10 @@ public class Word {
         this.transcription = transcription;
     }
 
-    public static Word createWord(String name, String priority, String transfer, String transcription){
-        Word word = new Word();
-        word.setName(name);
-        word.setTransfer(transfer);
-        word.setPriority(priority);
-        word.setTranscription(transcription);
-        return word;
+    public Word (String name, String priority, String transfer, String transcription){
+       setName(name);
+       setTransfer(transfer);
+        setPriority(priority);
+        setTranscription(transcription);
     }
 }

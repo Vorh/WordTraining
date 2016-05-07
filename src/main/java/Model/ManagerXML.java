@@ -8,7 +8,6 @@ import java.io.File;
 
 public class ManagerXML {
 
-
     public static void marshal(Word word, File file){
         try {
             JAXBContext jaxbContext = JAXBContext.newInstance(Category.class);
