@@ -37,8 +37,7 @@ public class Main extends Application{
 
         Tab statistics = new Tab("Статистика");
         statistics.setClosable(false);
-        Pane paneSt = new Pane();
-        paneSt.setPrefSize(400,500);
+        Pane paneSt = getPaneStatistics();
         statistics.setContent(paneSt);
 
         Tab addWord = new Tab("Добавление слова");
@@ -54,6 +53,21 @@ public class Main extends Application{
 
         tabPane.getTabs().addAll(task,statistics,addWord,setting);
         return tabPane;
+    }
+
+    private Pane getPaneStatistics() {
+        Pane paneSt = new Pane();
+        paneSt.setPrefSize(400,500);
+
+        TableView tableStatistics = new TableView();
+        tableStatistics.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
+        tableStatistics.setPrefSize(400,500);
+        TableColumn nameColumn = new TableColumn("Название");
+        TableColumn priorityColumn = new TableColumn("Приоритет");
+        TableColumn categoryColumn = new TableColumn("Категория");
+        tableStatistics.getColumns().addAll(nameColumn,priorityColumn,categoryColumn);
+        paneSt.getChildren().addAll(tableStatistics);
+        return paneSt;
     }
 
     private Pane getPaneAddWord() {
@@ -87,7 +101,6 @@ public class Main extends Application{
         Button but = new Button("Добавить");
         but.setTranslateX(150);
         but.setTranslateY(350);
-
 
         paneWord.getChildren().addAll(text1,text2,text3,
                                    but,wordInput,priority,boxCategory);
