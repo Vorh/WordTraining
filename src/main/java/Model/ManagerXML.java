@@ -8,7 +8,8 @@ import java.io.File;
 
 public class ManagerXML {
 
-    public static void marshal(Word word, File file){
+    private static File file;
+    public static void marshal(Word word){
         try {
             JAXBContext jaxbContext = JAXBContext.newInstance(Category.class);
             Marshaller marshaller = jaxbContext.createMarshaller();
@@ -37,9 +38,6 @@ public class ManagerXML {
     }
 
     public static Category createCategory(String name){
-        String path = Category.class.getProtectionDomain().getCodeSource().getLocation().getPath();
-        String dirPath = new File(path).getParent();
-        File file = new File(dirPath+"\\" + name + ".xml");
 
         Category category = new Category();
         category.setName(name);
@@ -56,5 +54,16 @@ public class ManagerXML {
         }
 
         return category;
+    }
+
+    public static void isWordFile(){
+        String path = Category.class.getProtectionDomain().getCodeSource().getLocation().getPath();
+        String dirPath = new File(path).getParent();
+        String name = "SaveWord";
+        file = new File(dirPath+"\\" + name + ".xml");
+
+        if(!file.exists()){
+            createCategory(name);
+        }
     }
 }

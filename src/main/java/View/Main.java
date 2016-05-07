@@ -15,8 +15,11 @@ import javafx.stage.Stage;
 
 public class Main extends Application{
 
+
     @Override
     public void start(Stage primaryStage) throws Exception {
+
+        ManagerXML.isWordFile();
         primaryStage.setWidth(400);
         primaryStage.setHeight(500);
         primaryStage.setResizable(false);
@@ -31,6 +34,8 @@ public class Main extends Application{
     }
 
     private TabPane getTabPane() {
+
+
         TabPane tabPane = new TabPane();
         tabPane.setTranslateY(0);
 
@@ -108,39 +113,23 @@ public class Main extends Application{
                text5,transcription, text2,boxCategory, text3, priority, butAddWord);
 
 
-        VBox vBoxCategory = new VBox();
-        vBoxCategory.setTranslateX(200);
-        vBoxCategory.setTranslateY(15);
-        vBoxCategory.setSpacing(10);
 
-        Text text6 = new Text("Введите название категории");
-        TextField category = new TextField();
-
-        Button butCreateCategory = new Button("Добаить");
-        butCreateCategory.setTranslateX(35);
-        vBoxCategory.getChildren().addAll(text6,category,butCreateCategory);
-        paneWord.getChildren().addAll(vBoxAddWord, vBoxCategory);
+        paneWord.getChildren().addAll(vBoxAddWord);
 
         butAddWord.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                Word word = new Word(
-                        wordInput.getText(),
+               Word word =  Word.createWord(
+                       wordInput.getText(),
                         priority.getText(),
                         transferInput.getText(),
                         transcription.getText()
                 );
+                ManagerXML.marshal(word);
 
             }
         });
 
-        butCreateCategory.setOnMouseClicked(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                ManagerXML.createCategory(category.getText());
-                category.setText("");
-            }
-        });
 
         return paneWord;
     }
