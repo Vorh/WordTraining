@@ -63,9 +63,10 @@ public class Main extends Application{
         tableStatistics.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
         tableStatistics.setPrefSize(400,500);
         TableColumn nameColumn = new TableColumn("Название");
+        TableColumn transferColumn = new TableColumn("Перевод");
         TableColumn priorityColumn = new TableColumn("Приоритет");
         TableColumn categoryColumn = new TableColumn("Категория");
-        tableStatistics.getColumns().addAll(nameColumn,priorityColumn,categoryColumn);
+        tableStatistics.getColumns().addAll(nameColumn,transferColumn,priorityColumn,categoryColumn);
         paneSt.getChildren().addAll(tableStatistics);
         return paneSt;
     }
@@ -82,28 +83,37 @@ public class Main extends Application{
         wordInput.setTranslateX(15);
         wordInput.setTranslateY(40);
 
+        Text text4 = new Text("Введите перевод");
+        text4.setTranslateX(15);
+        text4.setTranslateY(80);
+
+        TextField transferInput = new TextField();
+        transferInput.setTranslateX(15);
+        transferInput.setTranslateY(100);
+
         Text text2 = new Text("Выберите категорию");
         text2.setTranslateX(15);
-        text2.setTranslateY(80);
+        text2.setTranslateY(140);
 
         ComboBox boxCategory = new ComboBox();
         boxCategory.setTranslateX(15);
-        boxCategory.setTranslateY(100);
+        boxCategory.setTranslateY(160);
 
         Text text3 = new Text("Установить приоритет");
         text3.setTranslateX(15);
-        text3.setTranslateY(140);
+        text3.setTranslateY(200);
 
         TextField priority = new TextField();
         priority.setTranslateX(15);
-        priority.setTranslateY(160);
+        priority.setTranslateY(220);
 
         Button but = new Button("Добавить");
         but.setTranslateX(150);
         but.setTranslateY(350);
 
-        paneWord.getChildren().addAll(text1,text2,text3,
-                                   but,wordInput,priority,boxCategory);
+        paneWord.getChildren().addAll(text1,text2,text3,text4,
+                                   but,wordInput,priority,boxCategory,
+                                    transferInput);
         return paneWord;
     }
 }
