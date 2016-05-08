@@ -5,10 +5,13 @@ import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
 import java.io.File;
+import java.util.List;
 
 public class ManagerXML {
 
     private static File file;
+    private static Category category;
+
     public static void marshal(Word word){
         try {
             JAXBContext jaxbContext = JAXBContext.newInstance(Category.class);
@@ -29,7 +32,7 @@ public class ManagerXML {
         try {
             JAXBContext jaxbContext = JAXBContext.newInstance(Category.class);
             Unmarshaller unmarshaller = jaxbContext.createUnmarshaller();
-            Category category = (Category) unmarshaller.unmarshal(file);
+            category = (Category) unmarshaller.unmarshal(file);
             return category;
         } catch (JAXBException e) {
             e.printStackTrace();
@@ -61,9 +64,23 @@ public class ManagerXML {
         String dirPath = new File(path).getParent();
         String name = "SaveWord";
         file = new File(dirPath+"\\" + name + ".xml");
-        System.out.println(file);
         if(!file.exists()){
             createCategory(name);
+        }
+    }
+
+    public static void marshalSave (List<Word> list){
+        category.getList().clear();
+        for (Word record : list) {
+            category.getList().add(record);
+        }
+        try {
+            JAXBContext jaxbContext = JAXBContext.newInstance(Category.class);
+            Marshaller marshaller =   jaxbContext.createMarshaller();
+            marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT,true);
+            marshaller.marshal(category, file);
+        } catch (JAXBException e) {
+            e.printStackTrace();
         }
     }
 }
