@@ -3,13 +3,22 @@ package Model;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 
-@XmlType(propOrder = {"name", "transfer", "priority", "transcription"}, name = "word")
+@XmlType(propOrder = {"name", "transfer", "priority", "transcription","category"}, name = "word")
 @XmlRootElement
 public class Word {
     private String name;
     private String transfer;
     private String priority;
     private String transcription;
+    private String category;
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
+    }
 
     public String getName() {
         return name;
@@ -43,12 +52,13 @@ public class Word {
         this.transcription = transcription;
     }
 
-    public static Word createWord(String name, String priority, String transfer, String transcription){
+    public static Word createWord(String name, String priority, String transfer, String transcription, String category){
         Word word = new Word();
         word.setName(name);
         word.setTransfer(transfer);
         word.setPriority(priority);
         word.setTranscription(transcription);
+        word.setCategory(category);
         return word;
     }
 }

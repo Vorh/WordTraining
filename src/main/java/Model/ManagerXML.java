@@ -15,7 +15,7 @@ public class ManagerXML {
             Marshaller marshaller = jaxbContext.createMarshaller();
             marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT,true);
 
-            Category category = unmarshaller(file);
+            Category category = unmarshaller();
 
             category.getList().add(word);
             marshaller.marshal(category,file);
@@ -25,11 +25,11 @@ public class ManagerXML {
 
     }
 
-    public static Category unmarshaller(File fIle){
+    public static Category unmarshaller(){
         try {
             JAXBContext jaxbContext = JAXBContext.newInstance(Category.class);
             Unmarshaller unmarshaller = jaxbContext.createUnmarshaller();
-            Category category = (Category) unmarshaller.unmarshal(fIle);
+            Category category = (Category) unmarshaller.unmarshal(file);
             return category;
         } catch (JAXBException e) {
             e.printStackTrace();
@@ -61,7 +61,7 @@ public class ManagerXML {
         String dirPath = new File(path).getParent();
         String name = "SaveWord";
         file = new File(dirPath+"\\" + name + ".xml");
-
+        System.out.println(file);
         if(!file.exists()){
             createCategory(name);
         }
