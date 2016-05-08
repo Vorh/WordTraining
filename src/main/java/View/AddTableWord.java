@@ -19,7 +19,7 @@ public class AddTableWord extends Pane {
     private TextField priority;
 
     AddTableWord(){
-        this.setPrefSize(400, 500);
+        setPrefSize(400, 500);
 
         VBox vBoxAddWord = new VBox();
         vBoxAddWord.setSpacing(10);
@@ -50,7 +50,7 @@ public class AddTableWord extends Pane {
 
 
 
-        this.getChildren().addAll(vBoxAddWord);
+        getChildren().addAll(vBoxAddWord);
 
         butAddWord.setOnMouseClicked(new EventHandler<MouseEvent>() {
             public void handle(MouseEvent event) {

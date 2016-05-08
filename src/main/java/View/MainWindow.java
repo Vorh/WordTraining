@@ -3,7 +3,6 @@ package View;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.Pane;
 
 public class MainWindow {
 
@@ -15,6 +14,8 @@ public class MainWindow {
 
     private StatisticsTable statisticsTable;
     private AddTableWord addTableWord;
+    private TaskPane taskPane;
+    private SettingPane settingPane;
 
     public TabPane getTabPane() {
 
@@ -24,9 +25,8 @@ public class MainWindow {
 
         Tab task = new Tab("Задача");
         task.setClosable(false);
-        Pane paneTask = new Pane();
-        paneTask.setPrefSize(400, 500);
-        task.setContent(paneTask);
+        taskPane = new TaskPane();
+        task.setContent(taskPane);
 
         Tab statistics = new Tab("Статистика");
         statistics.setClosable(false);
@@ -40,9 +40,8 @@ public class MainWindow {
 
         Tab setting = new Tab("Настройка");
         setting.setClosable(false);
-        Pane paneSetting = new Pane();
-        paneSetting.setPrefSize(400,500);
-        setting.setContent(paneSetting);
+        settingPane = new SettingPane();
+        setting.setContent(settingPane);
 
         tabPane.getTabs().addAll(task,statistics,addWord,setting);
         return tabPane;
