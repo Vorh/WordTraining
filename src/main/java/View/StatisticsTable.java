@@ -17,13 +17,13 @@ import java.util.List;
 
 public class StatisticsTable extends Pane {
 
-    private ObservableList records;
-    private TableColumn name;
-    private TableColumn transferColumn;
-    private TableColumn priorityColumn;
-    private TableColumn categoryColumn;
-    private TableColumn transcriptionColumn;
-    private TableView tableStatistics;
+    private static ObservableList records;
+    private static TableColumn name;
+    private static TableColumn transferColumn;
+    private static TableColumn priorityColumn;
+    private static TableColumn categoryColumn;
+    private static TableColumn transcriptionColumn;
+    private static TableView tableStatistics;
 
 
     StatisticsTable(){
@@ -102,7 +102,7 @@ public class StatisticsTable extends Pane {
         this.getChildren().addAll(tableStatistics,deleteWord);
     }
 
-    public void addWordInTable(List<Word> list) {
+    public static void addWordInTable(List<Word> list) {
         records.clear();
         for(Word record : list){
             records.addAll(record);
