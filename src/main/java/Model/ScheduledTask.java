@@ -7,7 +7,7 @@ public class ScheduledTask extends TimerTask {
 
     @Override
     public void run() {
-        ManagerTask.extraditionSetWord();
+
 
     }
 }

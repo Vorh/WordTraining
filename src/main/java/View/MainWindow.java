@@ -2,20 +2,19 @@ package View;
 
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
-import javafx.scene.control.TextField;
 
 public class MainWindow {
 
-    private TextField wordInput;
-    private TextField transferInput;
-    private TextField transcription;
-    private TextField category;
-    private TextField priority;
 
-    private StatisticsTable statisticsTable;
-    private AddTableWord addTableWord;
-    private TaskPane taskPane;
-    private SettingPane settingPane;
+    private static StatisticsTable statisticsTable;
+    private static AddTableWord addTableWord;
+    private static TaskPane taskPane;
+    private static SettingPane settingPane;
+
+    private static Tab taskTab;
+    private static Tab statisticsTab;
+    private static Tab addWordTab;
+    private static Tab settingTab;
 
     public TabPane getTabPane() {
 
@@ -23,28 +22,34 @@ public class MainWindow {
         TabPane tabPane = new TabPane();
         tabPane.setTranslateY(0);
 
-        Tab task = new Tab("Задача");
-        task.setClosable(false);
+        taskTab = new Tab("Задача");
+        taskTab.setClosable(false);
         taskPane = new TaskPane();
-        task.setContent(taskPane);
+        taskTab.setContent(taskPane);
 
-        Tab statistics = new Tab("Статистика");
-        statistics.setClosable(false);
+        statisticsTab = new Tab("Статистика");
+        statisticsTab.setClosable(false);
         statisticsTable = new StatisticsTable();
-        statistics.setContent(statisticsTable);
+        statisticsTab.setContent(statisticsTable);
 
-        Tab addWord = new Tab("Добавление слова");
-        addWord.setClosable(false);
+        addWordTab = new Tab("Добавление слова");
+        addWordTab.setClosable(false);
         addTableWord = new AddTableWord();
-        addWord.setContent(addTableWord);
+        addWordTab.setContent(addTableWord);
 
-        Tab setting = new Tab("Настройка");
-        setting.setClosable(false);
+        settingTab = new Tab("Настройка");
+        settingTab.setClosable(false);
         settingPane = new SettingPane();
-        setting.setContent(settingPane);
+        settingTab.setContent(settingPane);
 
-        tabPane.getTabs().addAll(task,statistics,addWord,setting);
+        tabPane.getTabs().addAll(taskTab, statisticsTab, addWordTab, settingTab);
         return tabPane;
+    }
+
+    public static void setOnPane(boolean flag){
+        addWordTab.setDisable(flag);
+        settingTab.setDisable(flag);
+        statisticsTab.setDisable(flag);
     }
 
 

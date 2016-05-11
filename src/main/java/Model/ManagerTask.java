@@ -44,7 +44,7 @@ public class ManagerTask {
         if(result == true){
             listWord.get(score).setPriority(String.valueOf(++a));
         }else {
-            listWord.get(score).setPriority(String.valueOf(--a));
+            listWord.get(score).setPriority(String.valueOf(a));
         }
         score++;
     }
