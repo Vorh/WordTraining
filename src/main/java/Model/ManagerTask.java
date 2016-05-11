@@ -2,6 +2,7 @@ package Model;
 
 import View.TaskPane;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -12,11 +13,15 @@ public class ManagerTask {
     public static List<Word> listWord;
 
     public static void extraditionSetWord(){
-        listWord = ManagerXML.unmarshaller().getList();
+        List<Word> temp = ManagerXML.unmarshaller().getList();
+        listWord = new ArrayList<>();
+        for (int i = 0; i < amountWord; i++) {
+            listWord.add(temp.get(i));
+        }
 
         Collections.sort(listWord, (o1, o2) -> {
-            Word a = (Word) o1;
-            Word b = (Word) o2;
+            Word a = o1;
+            Word b = o2;
             return a.getPriority().compareTo(b.getPriority());
         });
         installationWord();
@@ -25,20 +30,21 @@ public class ManagerTask {
     }
 
     public static void installationWord(){
-        if(score > amountWord) {
-            TaskPane.needWordName.setText(listWord.get(amountWord).getName());
-            TaskPane.needWordTransfer.setText(listWord.get(amountWord).getName());
+        if(score < amountWord) {
+            TaskPane.needWordName.setText(listWord.get(score).getName());
+            TaskPane.needWordTransfer.setText(listWord.get(score).getTransfer());
         }else {
-
+            System.out.println("Молодец");
+            ManagerXML.marshalSave(listWord);
         }
     }
 
     public static void result(boolean result){
-        int a = Integer.parseInt(listWord.get(amountWord).getPriority());
+        int a = Integer.parseInt(listWord.get(score).getPriority());
         if(result == true){
-            listWord.get(amountWord).setPriority(String.valueOf(a++));
+            listWord.get(score).setPriority(String.valueOf(++a));
         }else {
-            listWord.get(amountWord).setPriority(String.valueOf(a--));
+            listWord.get(score).setPriority(String.valueOf(--a));
         }
         score++;
     }

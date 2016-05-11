@@ -10,7 +10,6 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 
 import java.util.List;
@@ -90,12 +89,10 @@ public class StatisticsTable extends Pane {
         deleteWord.setTranslateX(10);
         deleteWord.setTranslateY(410);
 
-        deleteWord.setOnMouseClicked(new EventHandler<MouseEvent>() {
-            public void handle(MouseEvent event) {
-                int s =  tableStatistics.getSelectionModel().getSelectedIndex();
-                tableStatistics.getItems().remove(s);
-                ManagerXML.marshalSave(records);
-            }
+        deleteWord.setOnMouseClicked(event -> {
+            int s =  tableStatistics.getSelectionModel().getSelectedIndex();
+            tableStatistics.getItems().remove(s);
+            ManagerXML.marshalSave(records);
         });
 
         tableStatistics.getColumns().addAll(name, transferColumn, priorityColumn, categoryColumn, transcriptionColumn);

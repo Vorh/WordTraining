@@ -17,7 +17,7 @@ public class TaskPane extends Pane {
         setPrefSize(400,500);
 
         needWordName = new Text();
-
+        needWordTransfer = new Text();
         Text result = new Text();
 
 
