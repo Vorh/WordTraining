@@ -89,11 +89,11 @@ public class SettingPane extends Pane {
         int minute = Integer.parseInt(minutes.getText());
         int second = Integer.parseInt(seconds.getText());
 
-        long timeTask = hour * 3600 + minute * 60 + second;
-        timeTask = timeTask * 1000;
+//        long timeTask = hour * 3600 + minute * 60 + second;
+//        timeTask = timeTask * 1000;
         Timer timer = new Timer();
-        ScheduledTask scheduledTask = new ScheduledTask();
-        timer.schedule(scheduledTask,timeTask);
+        ScheduledTask scheduledTask = new ScheduledTask(settings);
+        timer.schedule(scheduledTask,0);
 
         });
 

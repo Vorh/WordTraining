@@ -5,6 +5,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.Pane;
+import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
 
@@ -13,6 +14,7 @@ public class TaskPane extends Pane {
 
     public static Text needWordName;
     public static Text needWordTransfer;
+    public static Text timer;
 
     TaskPane(){
         setPrefSize(400,500);
@@ -66,9 +68,12 @@ public class TaskPane extends Pane {
             }
         });
 
+        timer = new Text("ППП");
+        timer.setFont(Font.font(30));
+        timer.setTranslateX(170);
+        timer.setTranslateY(90);
 
-
-        getChildren().addAll(needWordName,inputAnswer,result,startTask);
+        getChildren().addAll(needWordName,inputAnswer,result,startTask,timer);
     }
 
 
