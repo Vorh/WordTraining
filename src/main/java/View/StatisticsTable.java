@@ -1,7 +1,7 @@
 package View;
 
-import Model.ManagerXML;
-import Model.Word;
+import XML.ManagerXML;
+import XML.Word;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;

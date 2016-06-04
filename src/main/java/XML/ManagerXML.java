@@ -1,4 +1,4 @@
-package Model;
+package XML;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;

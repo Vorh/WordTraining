@@ -1,6 +1,8 @@
 package Model;
 
 import View.TaskPane;
+import XML.ManagerXML;
+import XML.Word;
 
 import java.util.ArrayList;
 import java.util.Collections;
