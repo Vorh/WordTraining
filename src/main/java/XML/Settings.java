@@ -2,8 +2,9 @@ package XML;
 
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
+import java.io.File;
 
-@XmlType (propOrder = {"hours","minutes","second", "countWord", "minPriority"})
+@XmlType (propOrder = {"hours","minutes","second", "countWord", "minPriority", "path"})
 @XmlRootElement
 public class Settings {
     private int hours;
@@ -11,6 +12,17 @@ public class Settings {
     private int second;
     private int countWord;
     private int minPriority;
+    private File path;
+
+
+    public File getPath() {
+        return path;
+    }
+
+    public void setPath(File path) {
+        this.path = path;
+    }
+
 
     public int getCountWord() {
         return countWord;

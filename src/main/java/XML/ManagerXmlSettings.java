@@ -33,4 +33,40 @@ public class ManagerXmlSettings {
             e.printStackTrace();
         }
     }
+
+    public static Settings unmarshaller(){
+        try {
+            settings = (Settings) unmarshaller.unmarshal(file);
+            return settings;
+        } catch (JAXBException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public static Settings createSettings(){
+        Settings settings = new Settings();
+        settings.setHours(0);
+        settings.setMinutes(30);
+        settings.setSecond(0);
+        settings.setMinPriority(0);
+        settings.setCountWord(10);
+        settings.setPath(file);
+        try {
+            marshaller.marshal(settings,file);
+        } catch (JAXBException e) {
+            e.printStackTrace();
+        }
+        return settings;
+    }
+
+    public static void isSettingsFile(){
+        String path = Settings.class.getProtectionDomain().getCodeSource().getLocation().getPath();
+        String dirPath = new File(path).getParent();
+        String name = "Settings";
+        file = new File(dirPath+"\\"+ name + ".xml");
+        if(!file.exists()){
+            createSettings();
+        }
+    }
 }
