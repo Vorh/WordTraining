@@ -1,6 +1,8 @@
 package View;
 
 import Model.ScheduledTask;
+import XML.ManagerXmlSettings;
+import XML.Settings;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
@@ -66,7 +68,22 @@ public class SettingPane extends Pane {
         start.setTranslateX(170);
         start.setTranslateY(400);
 
+        Settings settings = ManagerXmlSettings.unmarshaller();
+        hours.setText(String.valueOf(settings.getHours()));
+        minutes.setText(String.valueOf(settings.getMinutes()));
+        seconds.setText(String.valueOf(settings.getSecond()));
+        countWord.setText(String.valueOf(settings.getCountWord()));
+        priority.setText(String.valueOf(settings.getMinPriority()));
+
         start.setOnMouseClicked( event -> {
+
+        settings.setHours(Integer.parseInt(hours.getText()));
+        settings.setMinutes(Integer.parseInt(minutes.getText()));
+        settings.setSecond(Integer.parseInt(seconds.getText()));
+        settings.setCountWord(Integer.parseInt(countWord.getText()));
+        settings.setMinPriority(Integer.parseInt(priority.getText()));
+
+        ManagerXmlSettings.marshal(settings);
 
         int hour = Integer.parseInt(hours.getText());
         int minute = Integer.parseInt(minutes.getText());
@@ -83,4 +100,5 @@ public class SettingPane extends Pane {
         getChildren().addAll(text1,hours,text2,minutes,text3,seconds,start,
                 text4,countWord,text5,priority);
     }
+
 }
