@@ -1,7 +1,7 @@
 package Model;
 
 import View.TaskPane;
-import XML.ManagerXML;
+import XML.ManagerXmlCategory;
 import XML.Word;
 
 import java.util.ArrayList;
@@ -15,7 +15,7 @@ public class ManagerTask {
     public static List<Word> listWord;
 
     public static void extraditionSetWord(){
-        List<Word> temp = ManagerXML.unmarshaller().getList();
+        List<Word> temp = ManagerXmlCategory.unmarshaller().getList();
         listWord = new ArrayList<>();
         for (int i = 0; i < amountWord; i++) {
             listWord.add(temp.get(i));
@@ -37,7 +37,7 @@ public class ManagerTask {
             TaskPane.needWordTransfer.setText(listWord.get(score).getTransfer());
         }else {
             System.out.println("Молодец");
-            ManagerXML.marshalSave(listWord);
+            ManagerXmlCategory.marshalSave(listWord);
         }
     }
 

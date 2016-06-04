@@ -1,6 +1,6 @@
 package View;
 
-import XML.ManagerXML;
+import XML.ManagerXmlCategory;
 import XML.Word;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -40,7 +40,7 @@ public class StatisticsTable extends Pane {
         categoryColumn = new TableColumn("Категория");
 
         records = FXCollections.observableArrayList();
-        List<Word> list = ManagerXML.unmarshaller().getList();
+        List<Word> list = ManagerXmlCategory.unmarshaller().getList();
 
         addWordInTable(list);
 
@@ -49,7 +49,7 @@ public class StatisticsTable extends Pane {
         name.setOnEditCommit(new EventHandler<TableColumn.CellEditEvent<Word, String>>() {
             public void handle(TableColumn.CellEditEvent<Word, String> event) {
                 event.getTableView().getItems().get(event.getTablePosition().getRow()).setName(event.getNewValue());
-                ManagerXML.marshalSave(records);
+                ManagerXmlCategory.marshalSave(records);
             }
         });
 
@@ -57,7 +57,7 @@ public class StatisticsTable extends Pane {
         transferColumn.setOnEditCommit(new EventHandler<TableColumn.CellEditEvent<Word, String>>() {
             public void handle(TableColumn.CellEditEvent<Word, String> event) {
                 event.getTableView().getItems().get(event.getTablePosition().getRow()).setTransfer(event.getNewValue());
-                ManagerXML.marshalSave(records);
+                ManagerXmlCategory.marshalSave(records);
             }
         });
 
@@ -65,7 +65,7 @@ public class StatisticsTable extends Pane {
         priorityColumn.setOnEditCommit(new EventHandler<TableColumn.CellEditEvent<Word, String>>() {
             public void handle(TableColumn.CellEditEvent<Word, String> event) {
                 event.getTableView().getItems().get(event.getTablePosition().getRow()).setPriority(event.getNewValue());
-                ManagerXML.marshalSave(records);
+                ManagerXmlCategory.marshalSave(records);
             }
         });
 
@@ -73,7 +73,7 @@ public class StatisticsTable extends Pane {
         categoryColumn.setOnEditCommit(new EventHandler<TableColumn.CellEditEvent<Word, String>>() {
             public void handle(TableColumn.CellEditEvent<Word, String> event) {
                 event.getTableView().getItems().get(event.getTablePosition().getRow()).setCategory(event.getNewValue());
-                ManagerXML.marshalSave(records);
+                ManagerXmlCategory.marshalSave(records);
             }
         });
 
@@ -81,7 +81,7 @@ public class StatisticsTable extends Pane {
         transcriptionColumn.setOnEditCommit(new EventHandler<TableColumn.CellEditEvent<Word, String>>() {
             public void handle(TableColumn.CellEditEvent<Word, String> event) {
                 event.getTableView().getItems().get(event.getTablePosition().getRow()).setTranscription(event.getNewValue());
-                ManagerXML.marshalSave(records);
+                ManagerXmlCategory.marshalSave(records);
             }
         });
 
@@ -92,7 +92,7 @@ public class StatisticsTable extends Pane {
         deleteWord.setOnMouseClicked(event -> {
             int s =  tableStatistics.getSelectionModel().getSelectedIndex();
             tableStatistics.getItems().remove(s);
-            ManagerXML.marshalSave(records);
+            ManagerXmlCategory.marshalSave(records);
         });
 
         tableStatistics.getColumns().addAll(name, transferColumn, priorityColumn, categoryColumn, transcriptionColumn);

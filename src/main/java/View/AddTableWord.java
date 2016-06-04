@@ -1,6 +1,6 @@
 package View;
 
-import XML.ManagerXML;
+import XML.ManagerXmlCategory;
 import XML.Word;
 import javafx.event.EventHandler;
 import javafx.scene.control.Button;
@@ -61,7 +61,7 @@ public class AddTableWord extends Pane {
                         transcription.getText(),
                         category.getText()
                 );
-                ManagerXML.marshal(word);
+                ManagerXmlCategory.marshal(word);
 
                 wordInput.setText("");
                 priority.setText("");
@@ -69,7 +69,7 @@ public class AddTableWord extends Pane {
                 transcription.setText("");
                 category.setText("");
 
-                StatisticsTable.addWordInTable(ManagerXML.unmarshaller().getList());
+                StatisticsTable.addWordInTable(ManagerXmlCategory.unmarshaller().getList());
             }
         });
     }
