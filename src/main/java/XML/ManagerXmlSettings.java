@@ -18,9 +18,10 @@ public class ManagerXmlSettings {
             Marshaller m = jaxbContext.createMarshaller();
             m.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT,true);
             Unmarshaller un = jaxbContext.createUnmarshaller();
-
             marshaller = m;
             unmarshaller = un;
+
+            isSettingsFile();
         } catch (JAXBException e) {
             e.printStackTrace();
         }

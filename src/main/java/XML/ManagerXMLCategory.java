@@ -7,20 +7,31 @@ import javax.xml.bind.Unmarshaller;
 import java.io.File;
 import java.util.List;
 
-public class ManagerXMLCategory {
+public class ManagerXmlCategory {
 
     private static File file;
     private static Category category;
-    private static Settings settings;
+    private static Marshaller marshaller;
+    private static Unmarshaller unmarshaller;
+
+    static {
+        try {
+            JAXBContext jaxbContext = JAXBContext.newInstance(Category.class);
+            Marshaller m = jaxbContext.createMarshaller();
+            m.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
+            marshaller =  m;
+            Unmarshaller un = jaxbContext.createUnmarshaller();
+            unmarshaller = un;
+
+            isWordFile();
+        } catch (JAXBException e) {
+            e.printStackTrace();
+        }
+    }
 
     public static void marshal(Word word){
         try {
-            JAXBContext jaxbContext = JAXBContext.newInstance(Category.class);
-            Marshaller marshaller = jaxbContext.createMarshaller();
-            marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT,true);
-
             Category category = unmarshaller();
-
             category.getList().add(word);
             marshaller.marshal(category,file);
         } catch (JAXBException e) {
@@ -31,8 +42,6 @@ public class ManagerXMLCategory {
 
     public static Category unmarshaller(){
         try {
-            JAXBContext jaxbContext = JAXBContext.newInstance(Category.class);
-            Unmarshaller unmarshaller = jaxbContext.createUnmarshaller();
             category = (Category) unmarshaller.unmarshal(file);
             return category;
         } catch (JAXBException e) {
@@ -42,21 +51,14 @@ public class ManagerXMLCategory {
     }
 
     public static Category createCategory(String name){
-
-        Category category = new Category();
-        category.setName(name);
-        category.setPath(file);
-
-
         try {
-            JAXBContext jaxbContext = JAXBContext.newInstance(Category.class);
-            Marshaller marshaller = jaxbContext.createMarshaller();
-            marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT,true);
+            Category category = new Category();
+            category.setName(name);
+            category.setPath(file);
             marshaller.marshal(category, file);
         } catch (JAXBException e) {
             e.printStackTrace();
         }
-
         return category;
     }
 
@@ -76,9 +78,6 @@ public class ManagerXMLCategory {
             category.getList().add(record);
         }
         try {
-            JAXBContext jaxbContext = JAXBContext.newInstance(Category.class);
-            Marshaller marshaller =   jaxbContext.createMarshaller();
-            marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT,true);
             marshaller.marshal(category, file);
         } catch (JAXBException e) {
             e.printStackTrace();

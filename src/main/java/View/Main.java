@@ -1,6 +1,5 @@
 package View;
 
-import XML.ManagerXmlCategory;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.TabPane;
@@ -10,8 +9,6 @@ public class Main extends  Application {
 
         @Override
         public void start(Stage primaryStage) throws Exception {
-
-            ManagerXmlCategory.isWordFile();
             primaryStage.setWidth(400);
             primaryStage.setHeight(500);
             primaryStage.setResizable(false);
