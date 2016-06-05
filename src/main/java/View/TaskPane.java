@@ -1,79 +1,51 @@
 package View;
 
-import Model.ManagerTask;
+import Model.ScheduledTask;
 import javafx.scene.control.Button;
-import javafx.scene.control.TextField;
-import javafx.scene.input.KeyCode;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
-import javafx.scene.text.TextAlignment;
+
+import java.util.Timer;
 
 public class TaskPane extends Pane {
-
-
-    public static Text needWordName;
-    public static Text needWordTransfer;
     public static Text timer;
+    public static Button startTimer;
 
     TaskPane(){
         setPrefSize(400,500);
+        TaskPaneWord taskPaneWord = new TaskPaneWord();
 
-        needWordName = new Text();
-        needWordTransfer = new Text();
-        Text result = new Text();
-        TextField inputAnswer = new TextField();
 
-        needWordName.setTranslateX(175);
-        needWordName.setTranslateY(50);
-        needWordName.setTextAlignment(TextAlignment.CENTER);
-        result.setTranslateX(175);
-        result.setTranslateY(60);
-        result.setTextAlignment(TextAlignment.CENTER);
-        inputAnswer.setTranslateX(125);
-        inputAnswer.setTranslateY(70);
+        Button startTask = new Button("Дайте мне слова!");
+        startTask.setTranslateX(145);
+        startTask.setTranslateY(320);
 
-        needWordName.setVisible(false);
-        inputAnswer.setVisible(false);
-        result.setVisible(false);
 
-        Button startTask = new Button("Начать");
-        startTask.setTranslateX(175);
-        startTask.setTranslateY(200);
+        startTimer = new Button("Пуск");
+        startTimer.setTranslateX(175);
+        startTimer.setTranslateY(350);
 
         startTask.setOnMouseClicked(event1 -> {
-            needWordName.setVisible(true);
-            inputAnswer.setVisible(true);
-            result.setVisible(true);
-
-            startTask.setVisible(false);
 
             MainWindow.setOnPane(true);
-            ManagerTask.extraditionSetWord();
         });
 
-        inputAnswer.setOnKeyReleased(event -> {
-            if (event.getCode().equals(KeyCode.ENTER)) {
-                String a = inputAnswer.getText().toLowerCase();
-                String b = needWordTransfer.getText().toLowerCase();
-                if(a.equals(b)){
-                    result.setText("Правильно");
-                    ManagerTask.result(true);
-                }else {
-                    result.setText("Не правильно");
-                    ManagerTask.result(false);
-                }
-                ManagerTask.installationWord();
-                inputAnswer.setText("");
-            }
+        startTimer.setOnMouseClicked(event -> {
+            startTimer.setDisable(true);
+            Timer timer = new Timer();
+            ScheduledTask scheduledTask = new ScheduledTask();
+            timer.schedule(scheduledTask,0);
         });
 
-        timer = new Text("ППП");
-        timer.setFont(Font.font(30));
-        timer.setTranslateX(170);
+
+
+        timer = new Text("00 : 00 : 00");
+        timer.setFont(Font.font(50));
+        timer.setTranslateX(80);
         timer.setTranslateY(90);
 
-        getChildren().addAll(needWordName,inputAnswer,result,startTask,timer);
+        getChildren().addAll(taskPaneWord, startTask, timer, startTimer);
     }
 
 

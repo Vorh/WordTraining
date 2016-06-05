@@ -1,14 +1,11 @@
 package View;
 
-import Model.ScheduledTask;
 import XML.ManagerXmlSettings;
 import XML.Settings;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
-
-import java.util.Timer;
 
 public class SettingPane extends Pane {
 
@@ -21,7 +18,7 @@ public class SettingPane extends Pane {
     SettingPane(){
         setPrefSize(400,500);
 
-        final Text text1 = new Text("Часы");
+        Text text1 = new Text("Часы");
         text1.setTranslateX(10);
         text1.setTranslateY(30);
 
@@ -84,17 +81,6 @@ public class SettingPane extends Pane {
         settings.setMinPriority(Integer.parseInt(priority.getText()));
 
         ManagerXmlSettings.marshal(settings);
-
-        int hour = Integer.parseInt(hours.getText());
-        int minute = Integer.parseInt(minutes.getText());
-        int second = Integer.parseInt(seconds.getText());
-
-//        long timeTask = hour * 3600 + minute * 60 + second;
-//        timeTask = timeTask * 1000;
-        Timer timer = new Timer();
-        ScheduledTask scheduledTask = new ScheduledTask(settings);
-        timer.schedule(scheduledTask,0);
-
         });
 
         getChildren().addAll(text1,hours,text2,minutes,text3,seconds,start,

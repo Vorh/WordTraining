@@ -1,6 +1,7 @@
 package Model;
 
 import View.TaskPane;
+import View.TaskPaneWord;
 import XML.ManagerXmlCategory;
 import XML.Word;
 
@@ -11,11 +12,12 @@ import java.util.List;
 public class ManagerTask {
 
     private static int score;
-    public static int amountWord = 3;
+    private static int amountWord;
     public static List<Word> listWord;
 
-    public static void extraditionSetWord(){
+    public static void extraditionSetWord(int s){
         List<Word> temp = ManagerXmlCategory.unmarshaller().getList();
+        amountWord = s;
         listWord = new ArrayList<>();
         for (int i = 0; i < amountWord; i++) {
             listWord.add(temp.get(i));
@@ -33,11 +35,11 @@ public class ManagerTask {
 
     public static void installationWord(){
         if(score < amountWord) {
-            TaskPane.needWordName.setText(listWord.get(score).getName());
-            TaskPane.needWordTransfer.setText(listWord.get(score).getTransfer());
+            TaskPaneWord.needWordName.setText("Нужное слово: " + listWord.get(score).getName());
+            TaskPaneWord.needWordTransfer.setText("Перевод: " + listWord.get(score).getTransfer());
         }else {
-            System.out.println("Молодец");
             ManagerXmlCategory.marshalSave(listWord);
+            TaskPane.startTimer.setDisable(false);
         }
     }
 

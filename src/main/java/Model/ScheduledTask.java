@@ -1,6 +1,7 @@
 package Model;
 
 import View.TaskPane;
+import XML.ManagerXmlSettings;
 import XML.Settings;
 
 import java.util.TimerTask;
@@ -10,8 +11,11 @@ public class ScheduledTask extends TimerTask {
     private int hours;
     private int minutes;
     private int second;
+    private int amountWord;
 
-    public ScheduledTask(Settings settings){
+    public ScheduledTask(){
+        Settings settings = ManagerXmlSettings.unmarshaller();
+        amountWord = settings.getCountWord();
         hours = settings.getHours();
         minutes = settings.getMinutes();
         second = settings.getSecond();
@@ -43,5 +47,7 @@ public class ScheduledTask extends TimerTask {
                 }
             }
         }
+        ManagerTask.extraditionSetWord(amountWord);
+
     }
 }
