@@ -36,6 +36,8 @@ public class TaskPaneWord extends Pane {
         inputAnswer.setTranslateX(125);
         inputAnswer.setTranslateY(250);
 
+        needWordTransfer.setVisible(false);
+
         inputAnswer.setOnKeyReleased(event -> {
             if (event.getCode().equals(KeyCode.ENTER)) {
                 String a = inputAnswer.getText().toLowerCase();
@@ -47,6 +49,7 @@ public class TaskPaneWord extends Pane {
                     result.setText("Результат: Не правильно");
                     ManagerTask.result(false);
                 }
+                wordCount.setText("Количество слов: " + ManagerTask.countWord);
                 ManagerTask.installationWord();
                 inputAnswer.setText("");
             }

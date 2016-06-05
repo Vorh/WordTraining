@@ -40,9 +40,9 @@ public class TaskPane extends Pane {
 
 
 
-        timer = new Text("00 : 00 : 00");
+        timer = new Text("0 : 0 : 0");
         timer.setFont(Font.font(50));
-        timer.setTranslateX(80);
+        timer.setTranslateX(120);
         timer.setTranslateY(90);
 
         getChildren().addAll(taskPaneWord, startTask, timer, startTimer);

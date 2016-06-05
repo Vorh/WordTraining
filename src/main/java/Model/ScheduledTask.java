@@ -23,12 +23,12 @@ public class ScheduledTask extends TimerTask {
 
     @Override
     public void run() {
-        TaskPane.timer.setText(hours+ " : " + minutes+ " : " + second);
+        TaskPane.timer.setText(hours + " : " + minutes+ " : " + second);
 
-        for (int i = 0; i <second ; second--) {
+        for (int i = 0; i <=second ; second--) {
             try {
                 Thread.sleep(1000);
-                TaskPane.timer.setText(hours+ " : " + minutes + " : " + second);
+                TaskPane.timer.setText(hours+ " : " + minutes + " : " +  + second);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
@@ -36,7 +36,7 @@ public class ScheduledTask extends TimerTask {
         minutes--;
         for (int i = 0; i <=hours ; hours--) {
             for (int j = 0; j <=minutes ; minutes--) {
-                for (int k = 60; k >0 ; k--) {
+                for (int k = 60; k >=0 ; k--) {
                     try {
                         Thread.sleep(1000);
                         TaskPane.timer.setText(hours+ " : " + minutes + " : " + k);
@@ -50,4 +50,6 @@ public class ScheduledTask extends TimerTask {
         ManagerTask.extraditionSetWord(amountWord);
 
     }
+
+
 }

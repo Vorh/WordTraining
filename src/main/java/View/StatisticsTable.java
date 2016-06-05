@@ -112,5 +112,6 @@ public class StatisticsTable extends Pane {
         }
     }
 
+
 }
 
