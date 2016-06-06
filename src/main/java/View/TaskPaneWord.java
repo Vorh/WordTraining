@@ -58,6 +58,13 @@ public class TaskPaneWord extends Pane {
         getChildren().addAll(needWordName,needWordTransfer, result,inputAnswer,wordCount);
     }
 
+    public static void clearField(){
+        needWordName.setText("Нужное слово:");
+        needWordTransfer.setText("Перевод:");
+        wordCount.setText("Количество слов:");
+        result.setText("Результат:");
+    }
+
 
 
 }
