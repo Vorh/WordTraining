@@ -49,6 +49,7 @@ public class ScheduledTask extends TimerTask {
             }
         }
         ManagerTask.extraditionSetWord(amountWord);
+        Sound.playSound();
 
     }
 

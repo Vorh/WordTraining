@@ -13,7 +13,7 @@ public class Chooser {
     public static File openExplorer(){
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Выбрать mp3 файл");
-        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("*.mp3"));
+        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Audio Files","*.mp3"));
         File sound = fileChooser.showOpenDialog(stage);
         if(sound != null){
             return sound;

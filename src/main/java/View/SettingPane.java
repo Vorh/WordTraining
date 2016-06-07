@@ -5,7 +5,10 @@ import XML.Settings;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
+import javafx.scene.text.Font;
 import javafx.scene.text.Text;
+
+import java.io.File;
 
 public class SettingPane extends Pane {
 
@@ -14,6 +17,7 @@ public class SettingPane extends Pane {
     private  TextField seconds;
     private  TextField countWord;
     private  TextField priority;
+    public static File sound;
 
     SettingPane(){
         setPrefSize(400,500);
@@ -69,18 +73,30 @@ public class SettingPane extends Pane {
         openChooser.setTranslateX(10);
         openChooser.setTranslateY(75);
 
-
+        Text tNameSound = new Text("Название:");
+        tNameSound.setFont(Font.font(16));
+        tNameSound.setTranslateX(105);
+        tNameSound.setTranslateY(90);
 
         Settings settings = ManagerXmlSettings.unmarshaller();
+
+        if(settings.getSoundFile()!=null) {
+            tNameSound.setText("Название: " + settings.getSoundFile().getName());
+        }
         hours.setText(String.valueOf(settings.getHours()));
         minutes.setText(String.valueOf(settings.getMinutes()));
         seconds.setText(String.valueOf(settings.getSecond()));
         countWord.setText(String.valueOf(settings.getCountWord()));
         priority.setText(String.valueOf(settings.getMinPriority()));
+        sound = settings.getSoundFile();
 
         openChooser.setOnMouseClicked(event1 -> {
-            Chooser.openExplorer();
+            sound = Chooser.openExplorer();
+            settings.setSoundFile(sound);
+            tNameSound.setText("Название: " + sound.getName());
         });
+
+
 
         start.setOnMouseClicked( event -> {
 
@@ -89,12 +105,11 @@ public class SettingPane extends Pane {
         settings.setSecond(Integer.parseInt(seconds.getText()));
         settings.setCountWord(Integer.parseInt(countWord.getText()));
         settings.setMinPriority(Integer.parseInt(priority.getText()));
-
         ManagerXmlSettings.marshal(settings);
         });
 
         getChildren().addAll(text1, hours, text2, minutes, text3, seconds, start,
-                text4, countWord, text5, priority, openChooser);
+                text4, countWord, text5, priority, openChooser,tNameSound);
     }
 
 }

@@ -4,7 +4,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 import java.io.File;
 
-@XmlType (propOrder = {"hours","minutes","second", "countWord", "minPriority", "path"})
+@XmlType (propOrder = {"hours","minutes","second", "countWord", "minPriority", "path", "soundFile"})
 @XmlRootElement
 public class Settings {
     private int hours;
@@ -13,6 +13,15 @@ public class Settings {
     private int countWord;
     private int minPriority;
     private File path;
+    private File soundFile;
+
+    public File getSoundFile() {
+        return soundFile;
+    }
+    public void setSoundFile(File soundFile) {
+        this.soundFile = soundFile;
+    }
+
 
 
     public File getPath() {
