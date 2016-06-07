@@ -65,12 +65,22 @@ public class SettingPane extends Pane {
         start.setTranslateX(170);
         start.setTranslateY(400);
 
+        Button openChooser = new Button("Выбрать звук");
+        openChooser.setTranslateX(10);
+        openChooser.setTranslateY(75);
+
+
+
         Settings settings = ManagerXmlSettings.unmarshaller();
         hours.setText(String.valueOf(settings.getHours()));
         minutes.setText(String.valueOf(settings.getMinutes()));
         seconds.setText(String.valueOf(settings.getSecond()));
         countWord.setText(String.valueOf(settings.getCountWord()));
         priority.setText(String.valueOf(settings.getMinPriority()));
+
+        openChooser.setOnMouseClicked(event1 -> {
+            Chooser.openExplorer();
+        });
 
         start.setOnMouseClicked( event -> {
 
@@ -83,8 +93,8 @@ public class SettingPane extends Pane {
         ManagerXmlSettings.marshal(settings);
         });
 
-        getChildren().addAll(text1,hours,text2,minutes,text3,seconds,start,
-                text4,countWord,text5,priority);
+        getChildren().addAll(text1, hours, text2, minutes, text3, seconds, start,
+                text4, countWord, text5, priority, openChooser);
     }
 
 }

@@ -15,10 +15,12 @@ public class Sound {
 
     public void playSound(){
         classLoader = Sound.class.getClassLoader();
-        URL file = classLoader.getResource("a.mp3");
+        URL file = classLoader.getResource("1.mp3");
         Media media  = new Media(file.toString());
         MediaPlayer mediaPlayer = new MediaPlayer(media);
-        mediaPlayer.play();
+        mediaPlayer.seek(mediaPlayer.getStartTime());
+
+
     }
 
     public static void main(String[] args) {
