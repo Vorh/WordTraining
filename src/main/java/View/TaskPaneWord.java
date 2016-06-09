@@ -4,8 +4,9 @@ import Model.ManagerTask;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
+import javafx.scene.text.Font;
 import javafx.scene.text.Text;
-import javafx.scene.text.TextAlignment;
 
 public class TaskPaneWord extends Pane {
     public static Text needWordName;
@@ -14,29 +15,33 @@ public class TaskPaneWord extends Pane {
     public static Text result;
 
     TaskPaneWord(){
+
+        VBox vBox = new VBox();
+
+        vBox.setTranslateX(46);
+        vBox.setTranslateY(135);
+
         needWordTransfer = new Text("Перевод:");
-        needWordTransfer.setTranslateX(125);
-        needWordTransfer.setTranslateY(210);
+        needWordTransfer.setFont(Font.font("AGBengaly",15));
 
         wordCount = new Text("Количество слов:");
-        wordCount.setTranslateX(125);
-        wordCount.setTranslateY(190);
+        wordCount.setFont(Font.font("AGBengaly", 15));
 
         needWordName = new Text("Нужное слово:");
-        needWordName.setTranslateX(125);
-        needWordName.setTranslateY(150);
-        needWordName.setTextAlignment(TextAlignment.CENTER);
+        needWordName.setFont(Font.font("AGBengaly",15));
 
         result = new Text("Результат:");
-        result.setTranslateX(125);
-        result.setTranslateY(170);
-        result.setTextAlignment(TextAlignment.CENTER);
+        result.setFont(Font.font("AGBengaly",15));
+
+        vBox.setSpacing(15);
+        vBox.getChildren().addAll(needWordName,wordCount,needWordTransfer,result);
 
         TextField inputAnswer = new TextField();
-        inputAnswer.setTranslateX(125);
-        inputAnswer.setTranslateY(250);
+        inputAnswer.setFont(Font.font("AGBengaly",15));
+        inputAnswer.setTranslateX(101);
+        inputAnswer.setTranslateY(280);
+        inputAnswer.getStyleClass().add("inputTaskPane");
 
-        needWordTransfer.setVisible(false);
 
         inputAnswer.setOnKeyReleased(event -> {
             if (event.getCode().equals(KeyCode.ENTER)) {
@@ -55,7 +60,7 @@ public class TaskPaneWord extends Pane {
             }
         });
 
-        getChildren().addAll(needWordName,needWordTransfer, result,inputAnswer,wordCount);
+        getChildren().addAll(vBox,inputAnswer);
     }
 
     public static void clearField(){

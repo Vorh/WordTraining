@@ -40,7 +40,6 @@ public class ManagerTask {
         TaskPaneWord.wordCount.setText("Количество слов: " + ManagerTask.countWord);
         if(score < amountWord) {
             TaskPaneWord.needWordName.setText("Нужное слово: " + listWord.get(score).getName());
-            TaskPaneWord.needWordTransfer.setText(listWord.get(score).getTransfer());
         }else {
             ManagerXmlCategory.marshalSave(listWord);
             TaskPane.startTimer.setDisable(false);
@@ -55,6 +54,7 @@ public class ManagerTask {
         }else {
             listWord.get(score).setPriority(String.valueOf(a));
         }
+        TaskPaneWord.needWordTransfer.setText("Переод слова: " + listWord.get(score).getTransfer());
         score++;
         countWord--;
     }

@@ -19,6 +19,7 @@ public class Main extends  Application {
             Chooser.setStage(primaryStage);
 
             Scene scene = new Scene(tabPane);
+            scene.getStylesheets().add((getClass().getResource("/main.css")).toExternalForm());
             primaryStage.setScene(scene);
             primaryStage.show();
 

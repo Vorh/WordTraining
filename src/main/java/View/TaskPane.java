@@ -18,12 +18,12 @@ public class TaskPane extends Pane {
         TaskPaneWord taskPaneWord = new TaskPaneWord();
 
 
-
-
         startTimer = new Button("Пуск");
-        startTimer.setTranslateX(175);
-        startTimer.setTranslateY(350);
-
+        startTimer.setFont(Font.font("AGBengaly", 18));
+        startTimer.setTranslateX(152);
+        startTimer.setTranslateY(355);
+        startTimer.setPrefWidth(80);
+        startTimer.getStyleClass().add("buttonStart");
 
         startTimer.setOnMouseClicked(event -> {
             startTimer.setDisable(true);
@@ -34,13 +34,21 @@ public class TaskPane extends Pane {
         });
 
 
+        Pane paneTimer = new Pane();
+        paneTimer.setPrefSize(210, 40);
+        paneTimer.getStyleClass().add("paneTimer");
+        paneTimer.setTranslateX(99);
+        paneTimer.setTranslateY(57);
 
-        timerText = new Text("0 : 0 : 0");
-        timerText.setFont(Font.font(50));
-        timerText.setTranslateX(120);
-        timerText.setTranslateY(90);
 
-        getChildren().addAll(taskPaneWord, timerText, startTimer);
+        timerText = new Text("00 : 00 : 00");
+        timerText.setFont(Font.font("AGBengaly", 30));
+        timerText.setTranslateX(115);
+        timerText.setTranslateY(86);
+
+        getStyleClass().add("paneTask");
+
+        getChildren().addAll(taskPaneWord, paneTimer,timerText, startTimer);
     }
 
 
