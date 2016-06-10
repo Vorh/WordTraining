@@ -1,5 +1,9 @@
 .paneBg {
-    -fx-background-color:#77b0eb;
+    /*-fx-background-color:#77b0eb;*/
+    -fx-background-color:
+
+linear-gradient(#007dbe, #68cdf7),
+radial-gradient(center 0% -10%, radius 200%,#68cdf7 0%, #32b4f0 25%, #07a0e3 50%, #028ccd 75%, #007dbe 100%);
 }
 .buttonStart {
       -fx-background-color:
