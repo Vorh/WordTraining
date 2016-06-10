@@ -5,6 +5,7 @@ import XML.Settings;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 
@@ -12,76 +13,82 @@ import java.io.File;
 
 public class SettingPane extends Pane {
 
-    private  TextField hours;
-    private  TextField minutes;
-    private  TextField seconds;
-    private  TextField countWord;
-    private  TextField priority;
     public static File sound;
 
     SettingPane(){
         setPrefSize(400,500);
+        getStyleClass().add("paneBg");
 
-        Text text1 = new Text("Часы");
-        text1.setTranslateX(10);
-        text1.setTranslateY(30);
+        Font textFont = new Font("AGBengaly",15);
+        Font inputFont = new Font("AGBengaly",13);
 
-        hours = new TextField();
-        hours.setTranslateX(10);
-        hours.setTranslateY(40);
-        hours.setPrefWidth(35);
+        VBox vBoxText = new VBox(15);
+        vBoxText.setTranslateX(20);
+        vBoxText.setTranslateY(50);
 
-        Text text2 = new Text("Минуты");
-        text2.setTranslateX(50);
-        text2.setTranslateY(30);
-        minutes = new TextField();
-        minutes.setTranslateX(55);
-        minutes.setTranslateY(40);
-        minutes.setPrefWidth(35);
+        Text textHours = new Text("Часы");
+        textHours.setFont(textFont);
 
-        Text text3 = new Text("Секунды");
-        text3.setTranslateX(100);
-        text3.setTranslateY(30);
-        seconds = new TextField();
-        seconds.setTranslateX(105);
-        seconds.setTranslateY(40);
-        seconds.setPrefWidth(35);
+        Text textMinutes = new Text("Минуты");
+        textMinutes.setFont(textFont);
 
-        Text text4 = new Text("Количество слов");
-        text4.setTranslateX(170);
-        text4.setTranslateY(30);
-        countWord = new TextField();
-        countWord.setTranslateX(270);
-        countWord.setTranslateY(15);
-        countWord.setPrefWidth(35);
+        Text textSeconds = new Text("Секунды");
+        textSeconds.setFont(textFont);
+
+        Text textCountWords = new Text("Количество слов");
+        textCountWords.setFont(textFont);
+
+        Text textPriority = new Text("Приоритет");
+        textPriority.setFont(textFont);
+
+        VBox vBoxInput = new VBox(5);
+        vBoxInput.setTranslateX(170);
+        vBoxInput.setTranslateY(45);
+
+        TextField hours = new TextField();
+        hours.setPrefWidth(40);
+        hours.setFont(inputFont);
+        hours.getStyleClass().add("inputField");
+
+        TextField minutes = new TextField();
+        minutes.setPrefWidth(40);
+        minutes.setFont(inputFont);
+        minutes.getStyleClass().add("inputField");
+
+        TextField seconds = new TextField();
+        seconds.setPrefWidth(40);
+        seconds.setFont(inputFont);
+        seconds.getStyleClass().addAll("inputField");
+
+        TextField countWord = new TextField();
+        countWord.setPrefWidth(40);
+        countWord.setFont(inputFont);
+        countWord.getStyleClass().addAll("inputField");
+
+        TextField priority = new TextField();
+        priority.setPrefWidth(40);
+        priority.setFont(inputFont);
+        priority.getStyleClass().addAll("inputField");
 
 
-        Text text5 = new Text("Приоритет");
-        text5.setTranslateX(170);
-        text5.setTranslateY(60);
-        priority = new TextField();
-        priority.setTranslateX(270);
-        priority.setTranslateY(45);
-        priority.setPrefWidth(35);
-
-
-        Button start = new Button("Сохранить");
-        start.setTranslateX(170);
-        start.setTranslateY(400);
+        Button butSaveSettings = new Button("Сохранить");
+        butSaveSettings.getStyleClass().addAll("buttonStart");
+        butSaveSettings.setTranslateX(150);
+        butSaveSettings.setTranslateY(400);
+        butSaveSettings.setFont(textFont);
 
         Button openChooser = new Button("Выбрать звук");
-        openChooser.setTranslateX(10);
-        openChooser.setTranslateY(75);
+        openChooser.setFont(textFont);
+        openChooser.getStyleClass().addAll("buttonStart");
 
-        Text tNameSound = new Text("Название:");
-        tNameSound.setFont(Font.font(16));
-        tNameSound.setTranslateX(105);
-        tNameSound.setTranslateY(90);
+        Text textNameSound = new Text("Название:");
+        textNameSound.setFont(Font.font(16));
+        textNameSound.setFont(textFont);
 
         Settings settings = ManagerXmlSettings.unmarshaller();
 
         if(settings.getSoundFile()!=null) {
-            tNameSound.setText("Название: " + settings.getSoundFile().getName());
+            textNameSound.setText("Название: " + settings.getSoundFile().getName());
         }
         hours.setText(String.valueOf(settings.getHours()));
         minutes.setText(String.valueOf(settings.getMinutes()));
@@ -93,23 +100,22 @@ public class SettingPane extends Pane {
         openChooser.setOnMouseClicked(event1 -> {
             sound = Chooser.openExplorer();
             settings.setSoundFile(sound);
-            tNameSound.setText("Название: " + sound.getName());
+            textNameSound.setText("Название: " + sound.getName());
         });
 
-
-
-        start.setOnMouseClicked( event -> {
-
-        settings.setHours(Integer.parseInt(hours.getText()));
-        settings.setMinutes(Integer.parseInt(minutes.getText()));
-        settings.setSecond(Integer.parseInt(seconds.getText()));
-        settings.setCountWord(Integer.parseInt(countWord.getText()));
-        settings.setMinPriority(Integer.parseInt(priority.getText()));
-        ManagerXmlSettings.marshal(settings);
+        butSaveSettings.setOnMouseClicked(event -> {
+            settings.setHours(Integer.parseInt(hours.getText()));
+            settings.setMinutes(Integer.parseInt(minutes.getText()));
+            settings.setSecond(Integer.parseInt(seconds.getText()));
+            settings.setCountWord(Integer.parseInt(countWord.getText()));
+            settings.setMinPriority(Integer.parseInt(priority.getText()));
+            ManagerXmlSettings.marshal(settings);
         });
 
-        getChildren().addAll(text1, hours, text2, minutes, text3, seconds, start,
-                text4, countWord, text5, priority, openChooser,tNameSound);
+        vBoxInput.getChildren().addAll(hours,minutes,seconds,countWord,priority);
+        vBoxText.getChildren().addAll(textHours,textMinutes,textSeconds, textCountWords,
+                                    textPriority,openChooser,textNameSound);
+        getChildren().addAll( vBoxText, butSaveSettings, vBoxInput);
     }
 
 }

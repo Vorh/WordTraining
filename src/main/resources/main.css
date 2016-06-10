@@ -5,24 +5,29 @@
 linear-gradient(#007dbe, #68cdf7),
 radial-gradient(center 0% -10%, radius 200%,#68cdf7 0%, #32b4f0 25%, #07a0e3 50%, #028ccd 75%, #007dbe 100%);
 }
+
 .buttonStart {
       -fx-background-color:
-            linear-gradient(#f0ff35, #a9ff00),
-            radial-gradient(center 50% -40%, radius 200%, #b8ee36 45%, #80c800 50%);
-        -fx-background-radius: 6, 5;
+            linear-gradient(#fff200, #fbf474),
+            radial-gradient(center 0% -89%, radius 0%, #fff725 0%, #fbf474 89%);
+        -fx-background-radius: 10px;
+        -fx-border-width: 2px;
+        -fx-border-color: black;
+        -fx-border-radius: 10px;
         -fx-background-insets: 0, 1;
         -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.4) , 5, 0.0 , 0 , 1 );
-        -fx-text-fill: #395306;
 }
 
 .buttonStart:hover {
     -fx-background-color:
     linear-gradient(#f2f036, #a9ff00),
     radial-gradient(center 50% -40%, radius 200%, #b8ee36 45%, #80c800 50%);
-    -fx-background-radius: 6, 5;
+    -fx-background-radius: 10px;
+    -fx-border-width: 2px;
+    -fx-border-color: black;
+    -fx-border-radius: 10px;
     -fx-background-insets: 0, 1;
     -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.4) , 5, 0.0 , 0 , 1 );
-    -fx-text-fill: #395306;
 }
 
 .inputField {
