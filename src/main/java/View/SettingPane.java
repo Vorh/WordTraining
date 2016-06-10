@@ -13,7 +13,7 @@ import java.io.File;
 
 public class SettingPane extends Pane {
 
-    public static File sound;
+    private static File sound;
 
     SettingPane(){
         setPrefSize(400,500);
@@ -115,7 +115,16 @@ public class SettingPane extends Pane {
         vBoxInput.getChildren().addAll(hours,minutes,seconds,countWord,priority);
         vBoxText.getChildren().addAll(textHours,textMinutes,textSeconds, textCountWords,
                                     textPriority,openChooser,textNameSound);
+
         getChildren().addAll( vBoxText, butSaveSettings, vBoxInput);
+    }
+
+    public static void setSound(File sound) {
+        SettingPane.sound = sound;
+    }
+
+    public static File getSound() {
+        return sound;
     }
 
 }

@@ -8,16 +8,15 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 
-public class TaskPaneWord extends Pane {
+public class TaskWordPane extends Pane {
     public static Text needWordName;
     public static Text needWordTransfer;
     public static Text wordCount;
     public static Text result;
 
-    TaskPaneWord(){
+    TaskWordPane(){
 
-        VBox vBox = new VBox();
-
+        VBox vBox = new VBox(15);
         vBox.setTranslateX(46);
         vBox.setTranslateY(135);
 
@@ -33,20 +32,19 @@ public class TaskPaneWord extends Pane {
         result = new Text("Результат:");
         result.setFont(Font.font("AGBengaly",15));
 
-        vBox.setSpacing(15);
-        vBox.getChildren().addAll(needWordName,wordCount,needWordTransfer,result);
 
         TextField inputAnswer = new TextField();
-        inputAnswer.setFont(Font.font("AGBengaly",15));
+        inputAnswer.setFont(Font.font("AGBengaly", 15));
         inputAnswer.setTranslateX(101);
         inputAnswer.setTranslateY(280);
         inputAnswer.getStyleClass().add("inputField");
 
-
         inputAnswer.setOnKeyReleased(event -> {
             if (event.getCode().equals(KeyCode.ENTER)) {
+
                 String a = inputAnswer.getText().toLowerCase();
                 String b = needWordTransfer.getText().toLowerCase();
+
                 if(a.equals(b)){
                     result.setText("Результат: Правильно");
                     ManagerTask.result(true);
@@ -60,6 +58,7 @@ public class TaskPaneWord extends Pane {
             }
         });
 
+        vBox.getChildren().addAll(needWordName, wordCount, needWordTransfer, result);
         getChildren().addAll(vBox,inputAnswer);
     }
 

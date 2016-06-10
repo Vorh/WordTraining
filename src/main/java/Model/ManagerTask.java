@@ -2,7 +2,7 @@ package Model;
 
 import View.StatisticsTable;
 import View.TaskPane;
-import View.TaskPaneWord;
+import View.TaskWordPane;
 import XML.ManagerXmlCategory;
 import XML.Word;
 
@@ -37,9 +37,9 @@ public class ManagerTask {
     }
 
     public static void installationWord(){
-        TaskPaneWord.wordCount.setText("Количество слов: " + ManagerTask.countWord);
+        TaskWordPane.wordCount.setText("Количество слов: " + ManagerTask.countWord);
         if(score < amountWord) {
-            TaskPaneWord.needWordName.setText("Нужное слово: " + listWord.get(score).getName());
+            TaskWordPane.needWordName.setText("Нужное слово: " + listWord.get(score).getName());
         }else {
             ManagerXmlCategory.marshalSave(listWord);
             TaskPane.startTimer.setDisable(false);
@@ -54,7 +54,7 @@ public class ManagerTask {
         }else {
             listWord.get(score).setPriority(String.valueOf(a));
         }
-        TaskPaneWord.needWordTransfer.setText("Переод слова: " + listWord.get(score).getTransfer());
+        TaskWordPane.needWordTransfer.setText("Переод слова: " + listWord.get(score).getTransfer());
         score++;
         countWord--;
     }

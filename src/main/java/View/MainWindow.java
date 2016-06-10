@@ -5,52 +5,37 @@ import javafx.scene.control.TabPane;
 
 public class MainWindow {
 
-
-    private static StatisticsTable statisticsTable;
-    private static PaneAddWord PaneAddWord;
-    private static TaskPane taskPane;
-    private static SettingPane settingPane;
-
-    private static Tab taskTab;
-    private static Tab statisticsTab;
-    private static Tab addWordTab;
-    private static Tab settingTab;
-
     public TabPane getTabPane() {
 
 
         TabPane tabPane = new TabPane();
         tabPane.setTranslateY(0);
 
-        taskTab = new Tab("Задача");
+        TaskPane taskPane = new TaskPane();
+        StatisticsTable statisticsTable = new StatisticsTable();
+        AddWordPane AddWordPane = new AddWordPane();
+        SettingPane settingPane = new SettingPane();
+
+        Tab taskTab = new Tab("Задача");
         taskTab.setClosable(false);
-        taskPane = new TaskPane();
         taskTab.setContent(taskPane);
 
-        statisticsTab = new Tab("Статистика");
+        Tab statisticsTab = new Tab("Статистика");
         statisticsTab.setClosable(false);
-        statisticsTable = new StatisticsTable();
         statisticsTab.setContent(statisticsTable);
 
-        addWordTab = new Tab("Добавление слова");
+        Tab addWordTab = new Tab("Добавление слова");
         addWordTab.setClosable(false);
-        PaneAddWord = new PaneAddWord();
-        addWordTab.setContent(PaneAddWord);
+        addWordTab.setContent(AddWordPane);
 
-        settingTab = new Tab("Настройка");
+        Tab settingTab = new Tab("Настройка");
         settingTab.setClosable(false);
-        settingPane = new SettingPane();
         settingTab.setContent(settingPane);
 
         tabPane.getTabs().addAll(taskTab, statisticsTab, addWordTab, settingTab);
         return tabPane;
     }
 
-    public static void setOnPane(boolean flag){
-        addWordTab.setDisable(flag);
-        settingTab.setDisable(flag);
-        statisticsTab.setDisable(flag);
-    }
 
 
 

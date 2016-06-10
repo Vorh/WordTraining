@@ -11,12 +11,10 @@ import java.util.Timer;
 public class TaskPane extends Pane {
     public static Text timerText;
     public static Button startTimer;
-    private static Timer timer;
 
     TaskPane(){
         setPrefSize(400,500);
-        TaskPaneWord taskPaneWord = new TaskPaneWord();
-
+        TaskWordPane taskWordPane = new TaskWordPane();
 
         startTimer = new Button("Пуск");
         startTimer.setFont(Font.font("AGBengaly", 18));
@@ -27,19 +25,18 @@ public class TaskPane extends Pane {
 
         startTimer.setOnMouseClicked(event -> {
             startTimer.setDisable(true);
-            timer = new Timer();
+            Timer timer = new Timer();
             ScheduledTask scheduledTask = new ScheduledTask();
             timer.schedule(scheduledTask, 0);
-            TaskPaneWord.clearField();
-        });
 
+            TaskWordPane.clearField();
+        });
 
         Pane paneTimer = new Pane();
         paneTimer.setPrefSize(210, 40);
         paneTimer.getStyleClass().add("paneTimer");
         paneTimer.setTranslateX(99);
         paneTimer.setTranslateY(57);
-
 
         timerText = new Text("00 : 00 : 00");
         timerText.setFont(Font.font("AGBengaly", 30));
@@ -48,7 +45,7 @@ public class TaskPane extends Pane {
 
         getStyleClass().add("paneBg");
 
-        getChildren().addAll(taskPaneWord, paneTimer,timerText, startTimer);
+        getChildren().addAll(taskWordPane, paneTimer,timerText, startTimer);
     }
 
 

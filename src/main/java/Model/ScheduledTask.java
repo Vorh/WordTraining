@@ -1,5 +1,6 @@
 package Model;
 
+import View.SettingPane;
 import View.TaskPane;
 import XML.ManagerXmlSettings;
 import XML.Settings;
@@ -11,11 +12,11 @@ public class ScheduledTask extends TimerTask {
     private int hours;
     private int minutes;
     private int second;
-    public static int amountWord;
+    private int countWord;
 
     public ScheduledTask(){
         Settings settings = ManagerXmlSettings.unmarshaller();
-        amountWord = settings.getCountWord();
+        countWord = settings.getCountWord();
         hours = settings.getHours();
         minutes = settings.getMinutes();
         second = settings.getSecond();
@@ -23,12 +24,10 @@ public class ScheduledTask extends TimerTask {
 
     @Override
     public void run() {
-
-
         for (int i = 0; i <=second ; second--) {
             try {
                 Thread.sleep(1000);
-                updetText(hours,minutes,second);
+                updateText(hours, minutes, second);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
@@ -39,7 +38,7 @@ public class ScheduledTask extends TimerTask {
                 for (int k = 60; k >=0 ; k--) {
                     try {
                         Thread.sleep(1000);
-                        updetText(hours,minutes,k);
+                        updateText(hours, minutes, k);
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
@@ -47,15 +46,16 @@ public class ScheduledTask extends TimerTask {
                 }
             }
         }
-        ManagerTask.extraditionSetWord(amountWord);
-        Sound.playSound();
-
+        ManagerTask.extraditionSetWord(countWord);
+        Sound.playSound(SettingPane.getSound());
     }
 
-    private void updetText(int hours, int minutes , int second){
+    //TODO to change a String to a StringBuilder
+    // Метод для корректной отрисовки цифр на таймере
+    private void updateText(int hours, int minutes, int second){
         String sHours = String.valueOf(hours);
         String sMinutes = String.valueOf(minutes);
-        String sSeound = String.valueOf(second);
+        String aSecond = String.valueOf(second);
         if(hours<10){
             sHours = "0" + sHours;
         }
@@ -63,9 +63,9 @@ public class ScheduledTask extends TimerTask {
             sMinutes = "0" + sMinutes;
         }
         if (second <10){
-            sSeound = "0" + second;
+            aSecond = "0" + second;
         }
-        TaskPane.timerText.setText(sHours+ " : " + sMinutes + " : " + sSeound);
+        TaskPane.timerText.setText(sHours+ " : " + sMinutes + " : " + aSecond);
     }
 
 
