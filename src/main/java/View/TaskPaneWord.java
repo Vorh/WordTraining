@@ -40,7 +40,7 @@ public class TaskPaneWord extends Pane {
         inputAnswer.setFont(Font.font("AGBengaly",15));
         inputAnswer.setTranslateX(101);
         inputAnswer.setTranslateY(280);
-        inputAnswer.getStyleClass().add("inputTaskPane");
+        inputAnswer.getStyleClass().add("inputField");
 
 
         inputAnswer.setOnKeyReleased(event -> {

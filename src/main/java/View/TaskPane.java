@@ -46,7 +46,7 @@ public class TaskPane extends Pane {
         timerText.setTranslateX(115);
         timerText.setTranslateY(86);
 
-        getStyleClass().add("paneTask");
+        getStyleClass().add("paneBg");
 
         getChildren().addAll(taskPaneWord, paneTimer,timerText, startTimer);
     }

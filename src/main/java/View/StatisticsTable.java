@@ -33,6 +33,7 @@ public class StatisticsTable extends Pane {
         tableStatistics.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
         tableStatistics.setPrefSize(395, 400);
         tableStatistics.setTableMenuButtonVisible(true);
+
         name = new TableColumn("Название");
         transferColumn = new TableColumn("Перевод");
         transcriptionColumn = new TableColumn("Транскрипция");
@@ -44,6 +45,7 @@ public class StatisticsTable extends Pane {
 
         addWordInTable(list);
 
+        name.getStyleClass().add("paneStat");
 
         name.setCellFactory(TextFieldTableCell.<Word>forTableColumn());
         name.setOnEditCommit(new EventHandler<TableColumn.CellEditEvent<Word, String>>() {

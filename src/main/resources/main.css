@@ -1,4 +1,4 @@
-.paneTask {
+.paneBg {
     -fx-background-color:#77b0eb;
 }
 .buttonStart {
@@ -21,7 +21,7 @@
     -fx-text-fill: #395306;
 }
 
-.inputTaskPane {
+.inputField {
         -fx-control-inner-background:#d4d22f;
         -fx-background-radius: 10, 10;
         -fx-border-color: #000000;
@@ -34,5 +34,15 @@
        -fx-background-radius: 10, 10;
        -fx-border-color: #000000;
        -fx-border-radius: 10px;
+}
+
+.paneStat {
+    -fx-control-inner-background: palegreen;
+    -fx-accent: derive(-fx-control-inner-background, -40%);
+    -fx-cell-hover-color: derive(-fx-control-inner-background, -20%);
+}
+
+
+.textPaneAddWord {
 
 }

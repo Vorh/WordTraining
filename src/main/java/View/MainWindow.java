@@ -7,7 +7,7 @@ public class MainWindow {
 
 
     private static StatisticsTable statisticsTable;
-    private static AddTableWord addTableWord;
+    private static PaneAddWord PaneAddWord;
     private static TaskPane taskPane;
     private static SettingPane settingPane;
 
@@ -34,8 +34,8 @@ public class MainWindow {
 
         addWordTab = new Tab("Добавление слова");
         addWordTab.setClosable(false);
-        addTableWord = new AddTableWord();
-        addWordTab.setContent(addTableWord);
+        PaneAddWord = new PaneAddWord();
+        addWordTab.setContent(PaneAddWord);
 
         settingTab = new Tab("Настройка");
         settingTab.setClosable(false);
